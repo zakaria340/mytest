@@ -21,7 +21,7 @@ define([
             var order = this.model.get('order');
             var tags = this.model.get('tags');
             var ville = this.model.get('ville');
-                        
+            var page = this.model.get('page');
                         
 			var sourceModel = this.sourcesPool[sourceId];
 			if (!sourceModel) {
@@ -38,7 +38,7 @@ define([
 			console.log('Rendering ' + sourceId + ' with term "'+ term + '"');
 
 			this.$el.empty().append(this.loadingTemplate());
-			view.render({ term: term,order:order,tags:tags,ville:ville });
+			view.render({ term: term,order:order,tags:tags,ville:ville,page:page });
 		},
 		addSource: function(sourceModel) {
 			var sourceId = sourceModel.get('id');

@@ -9,7 +9,7 @@ Class Utilities {
     }
 
     public static function getVille($ville) {
-        $db = new PDO('mysql:host=localhost;dbname=searchannonces;charset=utf8', 'root', '');
+        $db = new PDO('mysql:host=localhost;dbname=searchannonces;charset=utf8', 'root', 'ppHTNa3i');
         $cleanString = Utilities::clean($ville);
         $stmt = $db->query("SELECT * FROM villes WHERE slug LIKE '%" . $cleanString . "%'");
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -25,7 +25,7 @@ Class Utilities {
     }
 
     public static function getTags($tags) {
-        $db = new PDO('mysql:host=localhost;dbname=searchannonces;charset=utf8', 'root', '');
+        $db = new PDO('mysql:host=localhost;dbname=searchannonces;charset=utf8', 'root', 'ppHTNa3i');
         $listTags = array();
         foreach ($tags as $tag)
         {
@@ -51,6 +51,7 @@ Class Utilities {
         $string = str_replace($a, $b, $string);
         $string = strtolower($string);
         $string = addslashes($string);
+        $string = str_replace(' ', '-', $string);
         return $string;
     }
 

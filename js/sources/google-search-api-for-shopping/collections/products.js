@@ -4,7 +4,7 @@
 ], function (Backbone, ProductModel) {
     var ProductsCollection = Backbone.Collection.extend({
         model: ProductModel,
-        url: 'http://localhost/search2/rest/annonces',
+        url: 'http://localhost/cherchi/rest/annonces',
         parse: function (response) {
             return response;
         }
