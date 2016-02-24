@@ -21,10 +21,11 @@ define([
     setQuery: function () {
       var term = this.searchInput.val();
       var order = this.orderInput.find('li.active').find('a').data('order');
-      if (this.tagsInput.find('a.active').data('tag') == '') {
-        var tags = this.tagsInput.find('a.active').data('tag');
-      } else {
+      var tags = '';
+      if (this.tagsInput.find('a.active').data('tag') === null) {
         tags = 'none';
+      } else {
+        tags = this.tagsInput.find('a.active').data('tag');
       }
       var page = this.pageInput.val();
       var ville = this.villeInput.val();
