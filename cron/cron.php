@@ -21,7 +21,7 @@ Class Cron {
             'driver' => 'Mysqli',
             'database' => 'searchannonces',
             'username' => 'root',
-            'password' => '',
+            'password' => 'ppHTNa3i',
             'charset' => 'utf8',
             'options' => array(
                 'buffer_results' => true,
@@ -31,7 +31,7 @@ Class Cron {
     }
 
     public function _excuteCron() {
-        $marocannonces = new Avitoma($this->adapter);
+        $marocannonces = new wandaloo($this->adapter);
         $marocannonces->fetchALLAnnonces(2);
     }
 

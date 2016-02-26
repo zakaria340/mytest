@@ -58,10 +58,10 @@
 
 <div class="page">
     <div class="pagination">
-        <% if (page >1) { %>
+        <% if (parseInt(page) >1) { %>
         <a data-page="<%= page-1 %>" id="page-number-<%= page-1 %>" href="<%=  current_path  %>/<%= parseInt(page)-1 %>"  class="previous_page page-numbers">← Prev</a>
         <% } %>
-        <% if (page < total_count/8) { %>
+        <% if (page < parseInt(total_count)/35) { %>
         <a  data-page="<%= page +1 %>" id="page-number-<%= page+1 %>" href="<%=  current_path  %>/<%= parseInt(page)+1 %>" class="next_page page-numbers">Next →</a>
         <% } %>
 
