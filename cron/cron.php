@@ -21,7 +21,7 @@ Class Cron {
             'driver' => 'Mysqli',
             'database' => 'searchannonces',
             'username' => 'root',
-            'password' => 'ppHTNa3i',
+            'password' => '',
             'charset' => 'utf8',
             'options' => array(
                 'buffer_results' => true,

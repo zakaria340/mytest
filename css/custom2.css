@@ -81,17 +81,16 @@ div.search-extra ol.search-extra-list li a {
 div.search-extra ol.search-extra-list li a.active {
     color: #444444;
 }
-#search input {
-    height: 25px;
-    width: 350px;
-}
+
 #search select {
     height: 38px;
     margin: 0;
-    vertical-align: middle;
+    vertical-align: text-bottom;
     padding:  5px 5px 5px 25px;
     background-color: rgba(0, 0, 0, 0.16);
     color: #666;
+    width: 40%;
+    margin: 3px;
 
 }
 
@@ -112,4 +111,10 @@ ol.dribbbles li ul.tools, ol.collections li .tools {
 
 ol.dribbbles li div.dribbble a.dribbble-over, ol.collections li div.dribbble a.dribbble-over {
     padding: 10px;
+}
+.search-form {
+    padding: 25px 0;
+}
+.trends {
+    width: 50%;
 }

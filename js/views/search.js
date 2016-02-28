@@ -7,7 +7,7 @@ define([
   var SearchView = Backbone.View.extend({
     el: '.search',
     events: {
-      'click .search-button': 'setQuery',
+      'click .autocomplete__submit': 'setQuery',
       'click .order-item': 'setOrder',
       'click .tag-item': 'setTag',
       'click .pagination a': 'setPage'
@@ -65,7 +65,7 @@ define([
     },
     render: function () {
       this.$el.empty().append(this.searchTemplate());
-      this.searchInput = this.$('.search-input');
+      this.searchInput = this.$('#home__hint');
       this.sourceSelect = this.$('.source-select');
       this.orderInput = this.$('.list-orders-items');
       this.tagsInput = this.$('.search-extra-tags');

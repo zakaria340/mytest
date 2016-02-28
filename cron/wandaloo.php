@@ -33,8 +33,10 @@ Class wandaloo {
       if ($html->find('meta[property=og:image]', 0)) {
         $image = trim($html->find('meta[property=og:image]', 0)->content);
       }
-
-      $ville = trim($html->find('#vendeur li#Nom ', 0)->innertext);
+      $idVille=0;
+      $ville='';
+if($html->find('#vendeur li#Nom ', 0)){
+     $ville = trim($html->find('#vendeur li#Nom ', 0)->innertext);
 
       $ville = explode('<br/>', $ville);
       $ville = $ville[1];
@@ -43,6 +45,8 @@ Class wandaloo {
       $ville = trim($ville[0]);
 
       $idVille = Utilities::getVille($ville);
+}
+     
       $cat1 = trim('Voitures');
       $tags = Utilities::getTags(array($cat1));
       $extraKeywords = array();
