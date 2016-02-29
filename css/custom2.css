@@ -116,5 +116,19 @@ ol.dribbbles li div.dribbble a.dribbble-over, ol.collections li div.dribbble a.d
     padding: 25px 0;
 }
 .trends {
-    width: 50%;
+    width: 65%;
+}
+.autocomplete__hint, .autocomplete__input {
+    height: 50px;
+}
+
+
+#logo a, #logo span {
+    background-image: none;
+}
+
+#logo h1 a {
+    color: #fff;
+    margin-top: 10px;
+    font-family: Pacifico;
 }

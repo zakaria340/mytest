@@ -31,7 +31,7 @@ Class Cron {
     }
 
     public function _excuteCron() {
-        $marocannonces = new wandaloo($this->adapter);
+        $marocannonces = new Avitoma($this->adapter);
         $marocannonces->fetchALLAnnonces(2);
     }
 

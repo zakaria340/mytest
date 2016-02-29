@@ -40,8 +40,7 @@
                     '/' + options.tags + '/' + options.order;
 
             this.$el.append(this.template({current_path:unescape(currentpath),products: data[0].items, page: data[0].page, total_count: data[0].total_count}));
-            $('.search-extra-tags').append(this.templatetags({tags: data[0].tags}));
-            $('.search-extra-tags').find('[data-tag="' + options.tags + '"]').addClass('active');
+       $('.full-tabs').show();
             $('.current_page').val(data[0].page);
             new Masonry('ol.collections', {
               itemSelector: '.group'

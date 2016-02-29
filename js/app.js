@@ -21,9 +21,13 @@
             this.appQuery = new QueryModel();
 
             this.appQuery.on('change', function (model, changes) {
-              console.log(model.get('page'));
+
+                var paage = model.get('page');
+                if (typeof paage === 'undefined') {
+                    paage = 1;
+                }
                 this.router.navigate(
-                        '/search/' + model.get('sourceId') + '/' + model.get('term') + '/' + model.get('ville') + '/' + model.get('tags') + '/' + model.get('order') + '/' + model.get('page'),
+                        '/search/' + model.get('sourceId') + '/' + model.get('term') + '/' + model.get('ville') + '/' + model.get('tags') + '/' + model.get('order') + '/' + paage,
                         {trigger: false});
             }, this);
 

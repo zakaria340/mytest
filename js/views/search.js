@@ -21,12 +21,7 @@ define([
     setQuery: function () {
       var term = this.searchInput.val();
       var order = this.orderInput.find('li.active').find('a').data('order');
-      var tags = '';
-      if (this.tagsInput.find('a.active').data('tag') === null) {
-        tags = 'none';
-      } else {
-        tags = this.tagsInput.find('a.active').data('tag');
-      }
+      var tags = this.tagsInput.val();
       var page = this.pageInput.val();
       var ville = this.villeInput.val();
       var sourceId = 'annonces';
@@ -68,7 +63,7 @@ define([
       this.searchInput = this.$('#home__hint');
       this.sourceSelect = this.$('.source-select');
       this.orderInput = this.$('.list-orders-items');
-      this.tagsInput = this.$('.search-extra-tags');
+      this.tagsInput = this.$('.tags-select');
       this.villeInput = this.$('.villes-select');
       this.pageInput = this.$('.current_page');
       this.applyQuery();
