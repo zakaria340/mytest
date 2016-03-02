@@ -11,31 +11,34 @@ Class Sphinx {
         $this->_db = $db;
     }
 
+    public function checkAnnoncebyUrl($url) {
+        $annoncesTable = new \Zend\Db\TableGateway\TableGateway('annonces', $this->_db);
+        $sqlSelect = $annoncesTable->getSql()->select();
+        $sqlSelect->where(array('url' => $url));
+        $resultSet_count = $annoncesTable->selectWith($sqlSelect);
+        $data_check = $resultSet_count->toArray();
+        return $data_check;
+    }
+
     public function SaveToSphinx($data) {
 
         $annoncesTable = new \Zend\Db\TableGateway\TableGateway('annonces', $this->_db);
         extract($data);
         $dataAnnonce = $data;
-        $sqlSelect = $annoncesTable->getSql()->select();
-        $sqlSelect->where(array('title' => $dataAnnonce['title']));
-        $sqlSelect->where(array('idSite' => $dataAnnonce['idSite']));
-        $resultSet_count = $annoncesTable->selectWith($sqlSelect);
-        $data_check = $resultSet_count->toArray();
-        if (empty($data_check)) {
-            unset($dataAnnonce['idSphinx']);
-            unset($dataAnnonce['idAnnonce']);
-            $ville = array_keys($dataAnnonce['ville']);
-            $dataAnnonce['ville'] = $ville[0];
-            $dataAnnonce['ville'] = $ville[0];
-            $dataAnnonce['tags'] = implode(', ', $dataAnnonce['tags']);
-            $rawExtraKeywords = $dataAnnonce['extraKeywords'];
-            $dataAnnonce['extraKeywords'] = json_encode($dataAnnonce['extraKeywords']);
-            $annoncesTable->insert($dataAnnonce);
-            $idAnnonce = $annoncesTable->getLastInsertValue();
+        unset($dataAnnonce['idSphinx']);
+        unset($dataAnnonce['idAnnonce']);
+        $ville = array_keys($dataAnnonce['ville']);
+        $dataAnnonce['ville'] = $ville[0];
+        $dataAnnonce['ville'] = $ville[0];
+        $dataAnnonce['tags'] = implode(', ', $dataAnnonce['tags']);
+        $rawExtraKeywords = $dataAnnonce['extraKeywords'];
+        $dataAnnonce['extraKeywords'] = json_encode($dataAnnonce['extraKeywords']);
+        $annoncesTable->insert($dataAnnonce);
+        $idAnnonce = $annoncesTable->getLastInsertValue();
 
-            /**
-             * Sphinx Insert
-             */
+        /**
+         * Sphinx Insert
+         */
 //        $conn = new Connection();
 //        //$sq = SphinxQL::create($conn)->delete();
 //        $conn->setParams(array('host' => '127.0.0.1', 'port' => 9306));
@@ -52,7 +55,6 @@ Class Sphinx {
 //        );
 //        //var_dump($sphinxData);die('SPHINX');
 //       $sq->set($sphinxData)->execute();
-        }
     }
 
 }

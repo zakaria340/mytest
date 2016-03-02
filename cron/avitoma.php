@@ -12,6 +12,18 @@ Class Avitoma {
     }
 
     public function getData($annonce, $category, $data) {
+                   $url = $annonce->url;
+        $url = str_replace('vij', 'vi', $url);    
+            /**
+             * Check if Annonce exist.
+             */
+            $sphinx = new Sphinx($this->_db);
+            $d = $sphinx->checkAnnoncebyUrl($url);
+            if(!empty($d)){
+                return array();
+            }
+            
+            
         $dataToSave = array();
         $idVille = Utilities::getVille($annonce->full_ad_data->region);
         $tags = Utilities::getTags(array($category));
@@ -29,8 +41,7 @@ Class Avitoma {
         if (isset($annonce->full_ad_data->body) && !is_null($annonce->full_ad_data->body)) {
             $description = $annonce->full_ad_data->body;
         }
-        $url = $annonce->url;
-        $url = str_replace('vij', 'vi', $url);
+     
         $extraKeywords = array();
         
         foreach ($annonce->full_ad_data->ad_details as $detail) {

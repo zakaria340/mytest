@@ -18,13 +18,25 @@ Class Sarouty {
             $urldata = end($urldata);
             $s = preg_match_all('/(.*).html/', $urldata, $matches);
             $annonceID = $matches[1][0];
+            
+            /**
+             * Check if Annonce exist.
+             */
+            $sphinx = new Sphinx($this->_db);
+            $d = $sphinx->checkAnnoncebyUrl($url);
+            if(!empty($d)){
+                return array();
+            }
+            
             $prix = $image = $title = $urlAnnonces = '';
             $title = trim($html->find('h1', 0)->plaintext);
             if ($html->find('#property-amenities .last-date', 0)) {
                 $date = $html->find('#property-amenities .last-date', 0)->plaintext;
                 $date = str_replace('Dernière mise à jour:', '', $date);
                 $date = trim($date);
+                $date = strtotime($date);
             }
+            
             if ($html->find('#property-facts .price', 0)) {
                 $prix = trim($html->find('#property-facts .price .val', 0)->plaintext);
 
@@ -93,8 +105,6 @@ Class Sarouty {
                 $dataToSave = $this->getData($link, $dataSite);
                 if (!empty($dataToSave)) {
                     $sphinx->SaveToSphinx($dataToSave);
-                } else {
-                    $i--;
                 }
             }
         }

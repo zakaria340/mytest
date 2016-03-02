@@ -1,4 +1,5 @@
 <?php
+
 header('Content-Type: text/html; charset=utf-8');
 error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
@@ -31,10 +32,15 @@ Class Cron {
     }
 
     public function _excuteCron() {
+        $marocannonces = new Sarouty($this->adapter);
+        $marocannonces->fetchALLAnnonces(2);
         $marocannonces = new Avitoma($this->adapter);
         $marocannonces->fetchALLAnnonces(2);
+        $marocannonces = new wandaloo($this->adapter);
+        $marocannonces->fetchALLAnnonces(2);
+        $marocannonces = new Marocannonces($this->adapter);
+        $marocannonces->fetchALLAnnonces(2);
     }
-
 }
 
 $cron = new Cron();

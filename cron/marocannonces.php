@@ -22,6 +22,17 @@ Class Marocannonces {
         } else {
             $html = false;
         }
+        
+             /**
+             * Check if Annonce exist.
+             */
+            $sphinx = new Sphinx($this->_db);
+            $d = $sphinx->checkAnnoncebyUrl($url);
+            if(!empty($d)){
+                return array();
+            }
+            
+            
         $dataToSave = array();
         if ($html && $html->find('.description h1', 0)) {
             $prix = $image = $title = $description = $categorie1 = '';
