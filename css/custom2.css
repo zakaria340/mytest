@@ -132,3 +132,7 @@ ol.dribbbles li div.dribbble a.dribbble-over, ol.collections li div.dribbble a.d
     margin-top: 10px;
     font-family: Pacifico;
 }
+
+*::-moz-selection {
+    background: #333 none repeat scroll 0 0;
+}

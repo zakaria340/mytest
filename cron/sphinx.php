@@ -27,9 +27,9 @@ Class Sphinx {
         $dataAnnonce = $data;
         unset($dataAnnonce['idSphinx']);
         unset($dataAnnonce['idAnnonce']);
-        $ville = array_keys($dataAnnonce['ville']);
-        $dataAnnonce['ville'] = $ville[0];
-        $dataAnnonce['ville'] = $ville[0];
+        $ville = array_values($dataAnnonce['ville']);
+        $ville = $ville[0];
+        $dataAnnonce['ville'] = $ville;
         $dataAnnonce['tags'] = implode(', ', $dataAnnonce['tags']);
         $rawExtraKeywords = $dataAnnonce['extraKeywords'];
         $dataAnnonce['extraKeywords'] = json_encode($dataAnnonce['extraKeywords']);
