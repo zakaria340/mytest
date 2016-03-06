@@ -9,7 +9,7 @@
     ],
     "require": {
         "zendframework/zend-db": "2.6.2",
-        "slim/slim": "dev-master",
+        "slim/slim": "3.2.2",
         "zendframework/zend-json": "2.6.0",
                 "zendframework/zend-paginator": "2.6.0",
         "foolz/sphinxql-query-builder": "dev-master"
