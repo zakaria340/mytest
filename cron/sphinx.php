@@ -39,22 +39,22 @@ Class Sphinx {
         /**
          * Sphinx Insert
          */
-//        $conn = new Connection();
-//        //$sq = SphinxQL::create($conn)->delete();
-//        $conn->setParams(array('host' => '127.0.0.1', 'port' => 9306));
-//        $sq = SphinxQL::create($conn)->insert()->into('annonces');
-//        $sphinxData = array(
-//            'id' => $idAnnonce,
-//            'title' => $dataAnnonce['title'],
-//            'description' => $dataAnnonce['description'],
-//            'tags' => $dataAnnonce['tags'],
-//            'extrakeywords' => json_encode($rawExtraKeywords),
-//            'idsite' => $dataAnnonce['idSite'],
-//            'ville' => $dataAnnonce['ville'],
-//            'date' => $dataAnnonce['date']
-//        );
-//        //var_dump($sphinxData);die('SPHINX');
-//       $sq->set($sphinxData)->execute();
+        $conn = new Connection();
+        //$sq = SphinxQL::create($conn)->delete();
+        $conn->setParams(array('host' => '127.0.0.1', 'port' => 9306));
+        $sq = SphinxQL::create($conn)->insert()->into('annonces');
+        $sphinxData = array(
+            'id' => $idAnnonce,
+            'title' => $dataAnnonce['title'],
+            'description' => $dataAnnonce['description'],
+            'tags' => $dataAnnonce['tags'],
+            'extrakeywords' => json_encode($rawExtraKeywords),
+            'idsite' => $dataAnnonce['idSite'],
+            'ville' => $dataAnnonce['ville'],
+            'date' => $dataAnnonce['date']
+        );
+        //var_dump($sphinxData);die('SPHINX');
+       $sq->set($sphinxData)->execute();
     }
 
 }

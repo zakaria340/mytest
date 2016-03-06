@@ -49,45 +49,57 @@ $app->get('/annonces', function () {
         )
     ));
 
-//  $conn = new Connection();
-//  $conn->setParams(array('host' => '127.0.0.1', 'port' => 9306));
+    $conn = new Connection();
+    $conn->setParams(array('host' => '127.0.0.1', 'port' => 9306));
     $q = '';
     $ville = $tags = NULL;
     if (isset($_GET['q'])) {
         $q = $_GET['q'];
-        $ville = (isset($_GET['source'])) ? $_GET['source'] : null;
-        if (isset($_GET['tags'])) {
-            $tags = $_GET['tags'];
-        }
     }
+    $ville = (isset($_GET['ville'])) ? $_GET['ville'] : null;
+    if (isset($_GET['tags'])) {
+        $tags = $_GET['tags'];
+    }
+
     $page = 1;
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
     }
 
-    $per_page = 35;
-//  $query = SphinxQL::create($conn)->select('*')
-//    ->from('annonces');
+    $per_page = 30;
+    $query = SphinxQL::create($conn)->select('*')
+            ->from('annonces');
     if (isset($_GET['q']) && $q != '') {
-        //  $query->match(array('title', 'description', 'tags'), $q);
+        $query->match(array('title', 'description', 'tags'), $q);
     }
-    if ($ville && $ville != 0 && $ville != '') {
-        // $query->where('ville', (int) $ville);
+    if ($ville !== 0 && $ville !== '' && $ville !== 'none') {
+        $query->match(array('ville'), $ville);
     }
     if ($tags && $tags != 'none') {
-        //$query->match(array('tags'), $tags);
+        $query->match(array('tags'), $tags);
     }
-    //$result = $query->execute();
+
+    if (isset($_GET['order']) && $_GET['order'] !== 'per') {
+        $query->orderBy('date','DESC');
+       // $query->SetSortMode ( SPH_SORT_ATTR_DESC, "date" );
+    }
+
+    $query->limit($per_page); // always takes an integer/numeric
+    $offset = ($page - 1) * ($per_page + 1);
+
+    $query->offset($offset);
+    $result = $query->execute();
     $ids = array();
-//  foreach ($result as $item) {
-//    $ids[] = $item['id'];
-//  }
+    foreach ($result as $item) {
+        $ids[] = $item['id'];
+    }
+
     $annoncesTable = new \Zend\Db\TableGateway\TableGateway('annonces', $adapter);
     $sqlSelect = $annoncesTable->getSql()->select();
-    if (true) {
+    if (!empty($ids)) {
         $sqlSelect->join('sites', 'annonces.idSite = sites.idSites', array('idSites', 'name', 'logo'));
-        $sqlSelect->join('villes', 'annonces.ville = villes.idVilles', array('labelville' => 'name'));
-        //  $sqlSelect->where(array('idAnnonces' => $ids));
+        $sqlSelect->join('villes', 'annonces.ville = villes.name', array('labelville' => 'name'));
+        $sqlSelect->where(array('idAnnonces' => $ids));
         // $sqlSelect->where('sites.idSites = 2');
         $resultSet_count = $annoncesTable->selectWith($sqlSelect);
         $data_count = utf8ize($resultSet_count->toArray());
@@ -103,15 +115,6 @@ $app->get('/annonces', function () {
                 $list_sites[$c['idSites']] = trim($c['name']);
             }
         }
-        $page_ = $page;
-        if ($page == 1) {
-            $page_ = 0;
-        }
-        $sqlSelect->limit($per_page); // always takes an integer/numeric
-        $offset = $page_ * $per_page;
-
-        $sqlSelect->offset($offset);
-        // $sqlSelect->where(array('idAnnonces' => $ids));
     } else {
         echo '[]';
         die;
