@@ -25,7 +25,7 @@ use Foolz\SphinxQL\Connection;
  */
 
 
-$app = new \Slim\Slim();
+$app = new Slim\App();
 
 function utf8ize($d) {
     if (is_array($d)) {
