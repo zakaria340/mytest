@@ -43,7 +43,7 @@ $app->get('/annonces', function () {
         'driver' => 'Mysqli',
         'database' => 'searchannonces',
         'username' => 'root',
-        'password' => '',
+        'password' => 'xfYdTuUPz6dw',
         'options' => array(
             'buffer_results' => true,
         )
