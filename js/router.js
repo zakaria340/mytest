@@ -4,7 +4,7 @@ define([
 ], function (Backbone, app) {
     var Router = Backbone.Router.extend({
         routes: {
-            'search/:sourceId(/:term)(/:ville)(/:tags)(/:order)(/:page)': 'searchImages'
+            'search/:sourceId(/)(:term)(/:ville)(/:tags)(/:order)(/:page)': 'searchImages'
         },
         searchImages: function (sourceId, term, ville, tags, order, page) {
           console.log(page);
