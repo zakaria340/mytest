@@ -83,8 +83,8 @@ $app->get('/annonces', function () {
     $query->orderBy('date', 'DESC');
     // $query->SetSortMode ( SPH_SORT_ATTR_DESC, "date" );
   }
+  $query->limit(100000000); // always takes an integer/numeric
   $resultcount = $query->execute();
-  var_dump($resultcount);die;
   $ids_count = array();
   foreach ($resultcount as $item) {
     $ids_count[] = $item['id'];
