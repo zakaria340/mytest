@@ -34,13 +34,9 @@ Class Cron {
     public function _excuteCron() {
 
         $marocannonces = new wandaloo($this->adapter);
-        $marocannonces->fetchALLAnnonces(2);
+        $marocannonces->fetchALLAnnonces(8);
         $marocannonces = new sarouty($this->adapter);
-        $marocannonces->fetchALLAnnonces(2);
-        $marocannonces = new Avitoma($this->adapter);
-        $marocannonces->fetchALLAnnonces(2);
-        $marocannonces = new Marocannonces($this->adapter);
-        $marocannonces->fetchALLAnnonces(2);
+        $marocannonces->fetchALLAnnonces(8);
     }
 
 }
