@@ -110,17 +110,17 @@ $app->get('/annonces', function () {
     //$resultSet_count = $annoncesTable->selectWith($sqlSelect);
     //$data_count = utf8ize($resultSet_count->toArray());
 
-    $list_tags = $list_sites = array();
-
-    foreach ($data_count as $c) {
-      if (!isset($list_tags[$c['tags']])) {
-        $list_tags[$c['tags']] = str_replace(' ', '-', strtolower(trim($c['tags'])));
-      }
-
-      if (!isset($list_sites[$c['idSites']])) {
-        $list_sites[$c['idSites']] = trim($c['name']);
-      }
-    }
+//    $list_tags = $list_sites = array();
+//
+//    foreach ($data_count as $c) {
+//      if (!isset($list_tags[$c['tags']])) {
+//        $list_tags[$c['tags']] = str_replace(' ', '-', strtolower(trim($c['tags'])));
+//      }
+//
+//      if (!isset($list_sites[$c['idSites']])) {
+//        $list_sites[$c['idSites']] = trim($c['name']);
+//      }
+//    }
   } else {
     echo '[]';
     die;
@@ -129,22 +129,22 @@ $app->get('/annonces', function () {
   $resultSet = $annoncesTable->selectWith($sqlSelect);
   $data_ = utf8ize($resultSet->toArray());
   $filteredData = array();
-  if (!empty($data_)) {
-    $filteredData = $list_tags;
-    if (count($list_tags) > 5) {
-      $list_tags_r = array_rand($list_tags, 5);
-      $filteredData = array_intersect_key(
-        $list_tags, array_flip($list_tags_r)
-      );
-    }
-  }
+//  if (!empty($data_)) {
+//    $filteredData = $list_tags;
+//    if (count($list_tags) > 5) {
+//      $list_tags_r = array_rand($list_tags, 5);
+//      $filteredData = array_intersect_key(
+//        $list_tags, array_flip($list_tags_r)
+//      );
+//    }
+//  }
 
   $data_return = array(
     'page' => $page,
     'total_count' => $total_count,
     'items' => $data_,
-    'tags' => $filteredData,
-    'sites' => $list_sites
+    'tags' => array(),
+    'sites' => array()
   );
 
   $data = \Zend\Json\Encoder::encode($data_return);
