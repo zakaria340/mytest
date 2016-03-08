@@ -1,4 +1,4 @@
-﻿define([
+define([
     'Backbone',
     'app'
 ], function (Backbone, app) {

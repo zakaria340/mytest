@@ -42,7 +42,7 @@ require([
 	'router',
 	'app'
 ], function(Backbone, Router, app) {
-
+console.log('zzzz');
 	var router = new Router();
 	app.initialize(router);
 

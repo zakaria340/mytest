@@ -21,7 +21,7 @@
             this.appQuery = new QueryModel();
 
             this.appQuery.on('change', function (model, changes) {
-
+console.log('ra');
                 var paage = model.get('page');
                 if (typeof paage === 'undefined') {
                     paage = 1;
