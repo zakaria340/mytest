@@ -84,6 +84,7 @@ $app->get('/annonces', function () {
     // $query->SetSortMode ( SPH_SORT_ATTR_DESC, "date" );
   }
   $resultcount = $query->execute();
+  var_dump($resultcount);die;
   $ids_count = array();
   foreach ($resultcount as $item) {
     $ids_count[] = $item['id'];
