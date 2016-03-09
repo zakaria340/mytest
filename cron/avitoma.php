@@ -50,14 +50,17 @@ Class Avitoma {
                 array_push($extraKeywords, array('label' => $detail['label'], 'value' => $detail['value']));
             }
         }
-        
+        $date = 0;
+        if(isset($annonce->full_ad_data->date)){
+          $date = strtotime($annonce->full_ad_data->date);
+        }
         $dataToSave = array(
           'idSphinx' => $data['prefix'] . $annonce->id,
           'idAnnonce' => $annonce->id,
           'idSite' => $data['idSites'],
           'title' => $annonce->subject,
           'description' => strip_tags($annonce->full_ad_data->body),
-          'date' => $annonce->ad_date,
+          'date' => $date,
           'ville' => array($idVille => $annonce->full_ad_data->region),
           'tags' => $tags,
           'image' => $imageUnique,
