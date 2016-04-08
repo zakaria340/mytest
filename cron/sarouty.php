@@ -63,12 +63,12 @@ Class Sarouty {
                   'value' => trim($value));
                 array_push($extraKeywords, $dataitem);
             }
-            $imageUnique = md5(time() . 1 . $annonceID). '.jpg';
-            if ($image != '') {
-                copy($image, '../images/' . $data['idSites'] . '/' . $imageUnique);
-            } else {
-                $imageUnique = '';
-            }
+            $imageUnique = $image;
+//            if ($image != '') {
+//                copy($image, '../images/' . $data['idSites'] . '/' . $imageUnique);
+//            } else {
+//                $imageUnique = '';
+//            }
 
             if ($html->find('meta[property=og:description]', 0)) {
                 $description = trim($html->find('meta[property=og:description]', 0)->content);

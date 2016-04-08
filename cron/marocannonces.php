@@ -61,13 +61,13 @@ Class Marocannonces {
             $idVille = Utilities::getVille($ville);
             $tags = Utilities::getTags(array($categorie1));
 
-            $imageUnique = md5(time() . 3 . $annonceID) . '.jpg';
+            $imageUnique = $image;
            
-                if ($image != '') {
-                    copy($image, '../images/' . $data['idSites'] . '/' . $imageUnique);
-                } else {
-                    $imageUnique = '';
-                }
+//                if ($image != '') {
+//                    copy($image, '../images/' . $data['idSites'] . '/' . $imageUnique);
+//                } else {
+//                    $imageUnique = '';
+//                }
             
             $extraKeywords = array();
             foreach ($html->find('#extra_questions li') as $li) {

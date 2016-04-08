@@ -27,12 +27,12 @@ Class Avitoma {
         $dataToSave = array();
         $idVille = Utilities::getVille($annonce->full_ad_data->region);
         $tags = Utilities::getTags(array($category));
-        $imageUnique = md5(time() . 1 . $annonce->id) . '.jpg';
-        if (isset($annonce->full_ad_data->image) && $annonce->full_ad_data->image->standard != '') {
-            copy($annonce->full_ad_data->image->standard, '../images/' . $data['idSites'] . '/' . $imageUnique);
-        } else {
-            $imageUnique = '';
-        }
+        $imageUnique = $annonce->full_ad_data->image->standard;
+//        if (isset($annonce->full_ad_data->image) && $annonce->full_ad_data->image->standard != '') {
+//            copy($annonce->full_ad_data->image->standard, '../images/' . $data['idSites'] . '/' . $imageUnique);
+//        } else {
+//            $imageUnique = '';
+//        }
         $price = '';
         if (isset($annonce->full_ad_data->price->value) && !is_null($annonce->full_ad_data->price->value)) {
             $price = $annonce->full_ad_data->price->value;

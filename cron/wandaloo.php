@@ -74,13 +74,12 @@ Class wandaloo {
             $boitevitesse = $html->find('#sommaire li', 6);
             array_push($extraKeywords, $boitevitesse->find('span', 0)->plaintext);
 
-            $imageUnique = md5(time() . 3 . $annonceID) . '.jpg';
-            if ($image != '') {
-                copy($image, '../images/' . $data['idSites'] . '/' . $imageUnique);
-            } else {
-                $imageUnique = '';
-            }
-
+            $imageUnique = $image;
+//            if ($image != '') {
+//                copy($image, '../images/' . $data['idSites'] . '/' . $imageUnique);
+//            } else {
+//                $imageUnique = '';
+//            }
             $dataToSave = array(
                 'idSphinx' => $data['prefix'] . $annonceID,
                 'idAnnonce' => $annonceID,
