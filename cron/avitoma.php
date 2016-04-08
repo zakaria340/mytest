@@ -27,7 +27,14 @@ Class Avitoma {
         $dataToSave = array();
         $idVille = Utilities::getVille($annonce->full_ad_data->region);
         $tags = Utilities::getTags(array($category));
-        $imageUnique = $annonce->full_ad_data->image->standard;
+      
+        
+        if (isset($annonce->full_ad_data->image) && $annonce->full_ad_data->image->standard != '') {
+            $imageUnique = $annonce->full_ad_data->image->standard;
+        }else{
+            $imageUnique = '';
+        }
+        
 //        if (isset($annonce->full_ad_data->image) && $annonce->full_ad_data->image->standard != '') {
 //            copy($annonce->full_ad_data->image->standard, '../images/' . $data['idSites'] . '/' . $imageUnique);
 //        } else {
