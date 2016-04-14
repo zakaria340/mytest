@@ -76,9 +76,9 @@ Class Moteur {
       }
 
       $dataToSave = array(
-        'idSphinx' => 3 . $annonceID,
+        'idSphinx' => 5 . $annonceID,
         'idAnnonce' => $annonceID,
-        'idSite' => 3,
+        'idSite' => 5,
         'title' => trim($title),
         'description' => trim($description),
         'date' => $date,

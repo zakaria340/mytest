@@ -67,9 +67,9 @@ Class Souk {
         $description = $html->find('.desc-text p', 0)->plaintext;
       }
       $dataToSave = array(
-        'idSphinx' => 3 . $annonceID,
+        'idSphinx' => 6 . $annonceID,
         'idAnnonce' => $annonceID,
-        'idSite' => 3,
+        'idSite' => 6,
         'title' => trim($title),
         'description' => trim($description),
         'date' => $date,
