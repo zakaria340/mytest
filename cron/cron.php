@@ -34,6 +34,11 @@ Class Cron {
   }
 
   public function _excuteCron() {
+    $marocannonces = new Moteur($this->adapter);
+    $marocannonces->fetchALLAnnonces(2);
+
+    $marocannonces = new Souk($this->adapter);
+    $marocannonces->fetchALLAnnonces(2);
 
     $marocannonces = new sarouty($this->adapter);
     $marocannonces->fetchALLAnnonces(1);
@@ -45,12 +50,6 @@ Class Cron {
 ////    $marocannonces->fetchALLAnnonces(1);
 //
     $marocannonces = new wandaloo($this->adapter);
-    $marocannonces->fetchALLAnnonces(1);
-
-    $marocannonces = new Moteur($this->adapter);
-    $marocannonces->fetchALLAnnonces(1);
-
-    $marocannonces = new Souk($this->adapter);
     $marocannonces->fetchALLAnnonces(1);
   }
 
