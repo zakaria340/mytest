@@ -40,6 +40,7 @@ Class Souk {
         $prix = str_replace('Dhs', '', $prix);
         $prix = trim($prix);
       }
+      $imageUnique='';
       if ($html->find('.annonce .adphoto img', 0)) {
         $image = trim($html->find('.annonce .adphoto img', 0)->src);
         $imageUnique = Utilities::resizeandsave($image, $data['idSites']);
