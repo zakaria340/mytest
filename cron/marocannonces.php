@@ -85,7 +85,7 @@ Class Marocannonces {
         'tags' => $tags,
         'image' => $imageUnique,
         'prix' => (string) $prix,
-        'url' => $html->find('.shareannonce li.signalerblockshare a', 0)->href,
+        'url' => $url,
         'extraKeywords' => $extraKeywords
       );
     }

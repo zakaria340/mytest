@@ -86,7 +86,7 @@ Class Moteur {
         'tags' => $tags,
         'image' => $imageUnique,
         'prix' => $prix,
-        'url' => '',
+        'url' => $url,
         'extraKeywords' => $extraKeywords
       );
     }
