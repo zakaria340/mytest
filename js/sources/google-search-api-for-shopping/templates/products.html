@@ -9,7 +9,7 @@
                             <div data-src="images/<%= product.idSite %>/<%= product.image %>"></div>
                             <div data-media="(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx)" data-src="images/<%= product.idSite %>/<%= product.image %>"></div>
 
-                            <img alt="<%= product.title %>" src="<%= product.image %>"></div>
+                            <img alt="<%= product.title %>" src="images/<%= product.idSite %>/<%= product.image %>"></div>
                     </a>
                     <a target="_blank" href='<%= product.url %>' class="dribbble-over">   
                         <span class="comment"><%=  product.description.substr(0,130) %></span>
