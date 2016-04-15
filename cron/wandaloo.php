@@ -111,8 +111,6 @@ Class wandaloo {
         $dataToSave = $this->getData($link, $dataSite);
         if (!empty($dataToSave)) {
           $sphinx->SaveToSphinx($dataToSave);
-        } else {
-          $i--;
         }
       }
     }

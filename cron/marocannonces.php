@@ -104,8 +104,6 @@ Class Marocannonces {
         $dataToSave = $this->getData($link, $data);
         if (!empty($dataToSave)) {
           $sphinx->SaveToSphinx($dataToSave);
-        } else {
-          $i--;
         }
       }
     }
