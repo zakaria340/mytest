@@ -42,7 +42,7 @@ Class Sphinx {
         $conn = new Connection();
         //$sq = SphinxQL::create($conn)->delete();
         $conn->setParams(array('host' => '127.0.0.1', 'port' => 9306));
-        $sq = SphinxQL::create($conn)->insert()->into('annonces6');
+        $sq = SphinxQL::create($conn)->insert()->into('annonces7');
         $sphinxData = array(
             'id' => $idAnnonce,
             'title' => $dataAnnonce['title'],

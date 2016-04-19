@@ -68,9 +68,9 @@ Class Souk {
         $description = $html->find('.desc-text p', 0)->plaintext;
       }
       $dataToSave = array(
-        'idSphinx' => 6 . $annonceID,
+        'idSphinx' => $data['prefix'] . $annonceID,
         'idAnnonce' => $annonceID,
-        'idSite' => 6,
+        'idSite' => $data['idSites'],
         'title' => trim($title),
         'description' => trim($description),
         'date' => $date,
@@ -97,7 +97,7 @@ Class Souk {
         $link = $item->find('a', 0)->href;
         $dataToSave = $this->getData($link, $data);
         if (!empty($dataToSave)) {
-          $sphinx->SaveToSphinx($dataToSave);
+         $sphinx->SaveToSphinx($dataToSave);
         } 
       }
     }

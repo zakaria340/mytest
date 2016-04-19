@@ -29,7 +29,7 @@ Class Moteur {
       $title = strip_tags($title);
       $title = trim($title);
       $date = '';
-      if ($html->find('#colonne-gauche-bloc-annonce table tr', 7)) {
+      if ($html->find('#colonne-gauche-bloc-annonce table tr', 7) && $html->find('#colonne-gauche-bloc-annonce table tr', 7)->find('td', 1)) {
         $date = $html->find('#colonne-gauche-bloc-annonce table tr', 7)->find('td', 1)->plaintext;
         $date = trim($date);
         $date = strtotime($date);
@@ -76,9 +76,9 @@ Class Moteur {
       }
 
       $dataToSave = array(
-        'idSphinx' => 5 . $annonceID,
+        'idSphinx' => $data['prefix'] . $annonceID,
         'idAnnonce' => $annonceID,
-        'idSite' => 5,
+        'idSite' => $data['idSites'],
         'title' => trim($title),
         'description' => trim($description),
         'date' => $date,
@@ -106,7 +106,7 @@ Class Moteur {
         $link = 'http://www.moteur.ma' . $link;
         $dataToSave = $this->getData($link, $data);
         if (!empty($dataToSave)) {
-          $sphinx->SaveToSphinx($dataToSave);
+         $sphinx->SaveToSphinx($dataToSave);
         }
       }
     }
