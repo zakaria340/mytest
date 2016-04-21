@@ -30,7 +30,8 @@ Class Avitoma {
 
 
     if (isset($annonce->full_ad_data->image) && $annonce->full_ad_data->image->standard != '') {
-      $imageUnique = Utilities::resizeandsave($annonce->full_ad_data->image->standard, $data['idSites']);
+      $imageUnique = md5(time() . 3 . $annonce->id) . '.jpg';
+      Utilities::resizeandsave($annonce->full_ad_data->image->standard, $data['idSites'], $imageUnique);
     } else {
       $imageUnique = '';
     }
@@ -95,8 +96,6 @@ Class Avitoma {
           $dataToSave = $this->getData($annonce, $category->name, $dataSite);
           if (!empty($dataToSave)) {
             $sphinx->SaveToSphinx($dataToSave);
-          } else {
-            $i--;
           }
         }
       }

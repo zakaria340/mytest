@@ -70,7 +70,8 @@ Class Moteur {
       array_pop($extraKeywords);
       array_pop($extraKeywords);
       if ($image != '') {
-        $imageUnique = Utilities::resizeandsave($image, $data['idSites']);
+        $imageUnique = md5(time() . 3 . $annonceID) . '.jpg';
+        Utilities::resizeandsave($image, $data['idSites'], $imageUnique);
       } else {
         $imageUnique = '';
       }

@@ -8,8 +8,7 @@ Class Utilities {
     $this->_db = $db;
   }
 
-  public static function resizeandsave($images, $annonceID) {
-    $new_images = md5(time() . 3 . $annonceID) . '.jpg';
+  public static function resizeandsave($images, $idSite, $imageUnique) {
     $width = 250;
     $size = GetimageSize($images);
     $height = round($width * $size[1] / $size[0]);
@@ -18,10 +17,10 @@ Class Utilities {
     $photoY = ImagesY($images_orig);
     $images_fin = ImageCreateTrueColor($width, $height);
     ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width + 1, $height + 1, $photoX, $photoY);
-    ImageJPEG($images_fin, '../images/' . $annonceID . '/' . $new_images);
+    ImageJPEG($images_fin, '../images/' . $idSite . '/' . $imageUnique);
     ImageDestroy($images_orig);
     ImageDestroy($images_fin);
-    return $new_images;
+    return $imageUnique;
   }
 
   public static function getVille($ville) {
