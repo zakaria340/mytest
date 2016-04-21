@@ -64,7 +64,8 @@ Class Sarouty {
         array_push($extraKeywords, $dataitem);
       }
       if ($image != '') {
-        $imageUnique = Utilities::resizeandsave($image, $data['idSites']);
+        $imageUnique = md5(time() . 3 . $annonceID) . '.jpg';
+        Utilities::resizeandsave($image, $data['idSites'], $imageUnique);
       } else {
         $imageUnique = '';
       }
