@@ -75,7 +75,8 @@ Class wandaloo {
       array_push($extraKeywords, $boitevitesse->find('span', 0)->plaintext);
 
       if ($image != '') {
-        $imageUnique = Utilities::resizeandsave($image, $data['idSites']);
+        $imageUnique = md5(time() . $data['idSites'] . $annonceID) . '.jpg';
+        Utilities::resizeandsave($image, $data['idSites'], $imageUnique);
       } else {
         $imageUnique = '';
       }
