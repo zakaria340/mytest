@@ -68,7 +68,7 @@ $app->get('/annonces', function () {
 
   $per_page = 30;
   $query = SphinxQL::create($conn)->select('*')
-    ->from('annonces7');
+    ->from('annonces8');
   if (isset($_GET['q']) && $q != '') {
     $query->match(array('title', 'description', 'tags'), $q);
   }
