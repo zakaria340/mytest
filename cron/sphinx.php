@@ -39,7 +39,7 @@ Class Sphinx {
         /**
          * Sphinx Insert
          */
-        $conn = new Connection();
+/*        $conn = new Connection();
         //$sq = SphinxQL::create($conn)->delete();
         $conn->setParams(array('host' => '127.0.0.1', 'port' => 9306));
         $sq = SphinxQL::create($conn)->insert()->into('annonces8');
@@ -54,7 +54,7 @@ Class Sphinx {
             'date' => $dataAnnonce['date']
         );
         //var_dump($sphinxData);die('SPHINX');
-       $sq->set($sphinxData)->execute();
+       $sq->set($sphinxData)->execute();*/
     }
 
 }

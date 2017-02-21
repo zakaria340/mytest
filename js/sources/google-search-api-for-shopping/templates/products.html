@@ -1,31 +1,31 @@
 <ol class="group collections ">
 
     <% _.each(products, function(product) { %>
-    <li class="group " id="screenshot-93616">
+    <li class="group singleAnnonce" id="screenshot-<%= product.idAnnonces %>">
         <div class="dribbble">
             <div class="dribbble-shot">
                 <div class="dribbble-img">
-                    <a target="_blank" href='<%= product.url %>' class="dribbble-link"><div data-alt="<%= product.title %>" data-picture="">
+                    <a target="" href='#chercher-annonce/annonce/<%=  product.tags %>/<%= product.idAnnonces %>--<%= product.title %>' class="dribbble-link">
+                        <div data-alt="<%= product.title %>" data-picture="">
                             <div data-src="images/<%= product.idSite %>/<%= product.image %>"></div>
-                            <div data-media="(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx)" data-src="images/<%= product.idSite %>/<%= product.image %>"></div>
+                            <div data-media="(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx)"
+                                 data-src="images/<%= product.idSite %>/<%= product.image %>"></div>
 
-                            <img alt="<%= product.title %>" src="images/<%= product.idSite %>/<%= product.image %>"></div>
+                            <img alt="<%= product.title %>" src="images/<%= product.idSite %>/<%= product.image %>">
+                        </div>
                     </a>
-                    <a target="_blank" href='<%= product.url %>' class="dribbble-over">   
+                    <a target="" href='#chercher-annonce/annonce/<%=  product.tags %>/<%= product.idAnnonces %>--<%= product.title %>' class="dribbble-over">
                         <span class="comment"><%=  product.description.substr(0,130) %></span>
-
-                        <em class="timestamp"> <%= new Date(product.date*1000).getDate()+1 %> / <%= new Date(product.date*1000).getMonth()+1 %> / <%= new Date(product.date*1000).getFullYear() %></em>
+                        <em class="timestamp"> <%= new Date(product.date*1000).getDate()+1 %> / <%= new
+                            Date(product.date*1000).getMonth()+1 %> / <%= new Date(product.date*1000).getFullYear()
+                            %></em>
                     </a>
-
                 </div>
-
                 <div class="collection-thumbs">
-
                     <span class="tools-title">   <%=  product.tags %> /  <%=  product.labelville %></span>
-
                     <% _.each(JSON.parse(product.extraKeywords), function(data) { %>
                     <h3>
-                        <a href="#"><%= data.label %></a>
+                        <a href="javascript:void(0)"><%= data.label %></a>
                         <span class="meta"><%= data.value %></span>
                     </h3>
                     <% }); %>
@@ -33,24 +33,28 @@
                 </div>
             </div>
         </div>
-
         <h2 class="attribution hover-card-parent">
             <span class="attribution-user">
-                <a target="_blank" href='<%= product.url %>' class="url hoverable">
+                <a target="" href='#chercher-annonce/annonce/<%=  product.tags %>/<%= product.idAnnonces %>--<%= product.title %>' class="url hoverable">
                     <img src="img/logo/<%= product.logo %>" class="photo"> <%= product.title %></a>
-                <a href="#" class="badge-link">
+                <a href="javascript:void(0)" class="badge-link">
                     <span class="badge badge-pro"><%= product.prix %></span>
-
                 </a>
             </span>
         </h2>
     </li>
 
 
+    <div id="myModal-<%= product.idAnnonces %>" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p><%= product.title %></p>
+        </div>
+
+    </div>
+
     <% }); %>
-
-
-
 </ol>
 
 
@@ -59,10 +63,12 @@
 <div class="page">
     <div class="pagination">
         <% if (parseInt(page) >1) { %>
-        <a data-page="<%= page-1 %>" id="page-number-<%= page-1 %>" href="<%=  current_path  %>/<%= parseInt(page)-1 %>"  class="previous_page page-numbers">← Prev</a>
+        <a data-page="<%= page-1 %>" id="page-number-<%= page-1 %>" href="<%=  current_path  %>/<%= parseInt(page)-1 %>"
+           class="previous_page page-numbers">← Prev</a>
         <% } %>
         <% if (page < parseInt(total_count)/35) { %>
-        <a  data-page="<%= page +1 %>" id="page-number-<%= page+1 %>" href="<%=  current_path  %>/<%= parseInt(page)+1 %>" class="next_page page-numbers">Next →</a>
+        <a data-page="<%= page +1 %>" id="page-number-<%= page+1 %>"
+           href="<%=  current_path  %>/<%= parseInt(page)+1 %>" class="next_page page-numbers">Next →</a>
         <% } %>
 
     </div>

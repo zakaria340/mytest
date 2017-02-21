@@ -22,23 +22,20 @@ define([
             var tags = this.model.get('tags');
             var ville = this.model.get('ville');
             var page = this.model.get('page');
+      var idannonce = this.model.get('idannonce');
                         
 			var sourceModel = this.sourcesPool[sourceId];
 			if (!sourceModel) {
 				console.log('Source ' + sourceId + ' not found!');
 				return;
 			}
-
 			var term = this.model.get('term');
 			var viewType = sourceModel.get('view');
 			var view = new viewType({
 				el: this.el
 			});
-
-			console.log('Rendering ' + sourceId + ' with term "'+ term + '"');
-
-			this.$el.empty().append(this.loadingTemplate());
-			view.render({ term: term,order:order,tags:tags,ville:ville,page:page });
+			//this.$el.empty().append(this.loadingTemplate());
+			view.render({ term: term,order:order,tags:tags,ville:ville,page:page,idannonce:idannonce});
 		},
 		addSource: function(sourceModel) {
 			var sourceId = sourceModel.get('id');

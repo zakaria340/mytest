@@ -15,6 +15,7 @@ define([
     searchTemplate: _.template(searchTemplate),
     optionTemplate: _.template("<option value='<%= id %>'><%= name %></option>"),
     initialize: function () {
+      console.log('initialize');
       this.model.on('change', this.applyQuery, this);
       $('.searchAnnonces').show();
       this.render();

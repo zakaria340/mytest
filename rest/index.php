@@ -43,7 +43,7 @@ $app->get('/annonces', function () {
     'driver' => 'Mysqli',
     'database' => 'searchannonces',
     'username' => 'root',
-    'password' => 'xfYdTuUPz6dw',
+    'password' => 'ppHTNa3i',
     'options' => array(
       'buffer_results' => true,
     )
@@ -66,7 +66,12 @@ $app->get('/annonces', function () {
     $page = $_GET['page'];
   }
 
-  $per_page = 30;
+  $idAnnonce = NULL;
+  if (isset($_GET['idannonce'])) {
+    $idAnnonce = $_GET['idannonce'];
+  }
+
+/*  $per_page = 30;
   $query = SphinxQL::create($conn)->select('*')
     ->from('annonces8');
   if (isset($_GET['q']) && $q != '') {
@@ -84,8 +89,8 @@ $app->get('/annonces', function () {
     // $query->SetSortMode ( SPH_SORT_ATTR_DESC, "date" );
   }
   $query->limit(100000000); // always takes an integer/numeric
-  $resultcount = $query->execute();
-  $ids_count = array();
+  $resultcount = $query->execute();*/
+/*  $ids_count = array();
   foreach ($resultcount as $item) {
     $ids_count[] = $item['id'];
   }
@@ -98,14 +103,20 @@ $app->get('/annonces', function () {
   $ids = array();
   foreach ($result as $item) {
     $ids[] = $item['id'];
-  }
+  }*/
 
   $annoncesTable = new \Zend\Db\TableGateway\TableGateway('annonces', $adapter);
   $sqlSelect = $annoncesTable->getSql()->select();
-  if (!empty($ids)) {
-    $sqlSelect->join('sites', 'annonces.idSite = sites.idSites', array('idSites', 'name', 'logo'));
-    $sqlSelect->join('villes', 'annonces.ville = villes.name', array('labelville' => 'name'));
-    $sqlSelect->where(array('idAnnonces' => $ids));
+  if (true) {
+
+    if(!is_null($idAnnonce)) {
+      $sqlSelect->where(array('idAnnonces' => array($idAnnonce)));
+    }else {
+      
+    }
+    //$sqlSelect->join('sites', 'annonces.idSite = sites.idSites', array('idSites', 'name', 'logo'));
+    //$sqlSelect->join('villes', 'annonces.ville = villes.name', array('labelville' => 'name'));
+    //$sqlSelect->where(array('idAnnonces' => $ids));
     // $sqlSelect->where('sites.idSites = 2');
     //$resultSet_count = $annoncesTable->selectWith($sqlSelect);
     //$data_count = utf8ize($resultSet_count->toArray());
@@ -125,6 +136,7 @@ $app->get('/annonces', function () {
     echo '[]';
     die;
   }
+  $sqlSelect->limit(20); // always takes an integer/numeric
 
   $resultSet = $annoncesTable->selectWith($sqlSelect);
   $data_ = utf8ize($resultSet->toArray());
@@ -141,7 +153,7 @@ $app->get('/annonces', function () {
 
   $data_return = array(
     'page' => $page,
-    'total_count' => $total_count,
+    'total_count' => 20,
     'items' => $data_,
     'tags' => array(),
     'sites' => array()

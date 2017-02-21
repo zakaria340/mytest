@@ -24,7 +24,7 @@ Class Cron {
       'driver' => 'Mysqli',
       'database' => 'searchannonces',
       'username' => 'root',
-       'password' => 'xfYdTuUPz6dw',
+       'password' => 'ppHTNa3i',
       'charset' => 'utf8',
       'options' => array(
         'buffer_results' => true,
@@ -37,20 +37,20 @@ Class Cron {
     $marocannonces = new Moteur($this->adapter);
     $marocannonces->fetchALLAnnonces(2);
 
-    $marocannonces = new Souk($this->adapter);
+/*    $marocannonces = new Souk($this->adapter);
     $marocannonces->fetchALLAnnonces(2);
 
     $marocannonces = new sarouty($this->adapter);
     $marocannonces->fetchALLAnnonces(1);
 //
     $marocannonces = new Marocannonces($this->adapter);
-    $marocannonces->fetchALLAnnonces(1);
+    $marocannonces->fetchALLAnnonces(1);*/
 //
 ////    $marocannonces = new Avitoma($this->adapter);
 ////    $marocannonces->fetchALLAnnonces(1);
 //
-    $marocannonces = new wandaloo($this->adapter);
-    $marocannonces->fetchALLAnnonces(1);
+/*    $marocannonces = new wandaloo($this->adapter);
+    $marocannonces->fetchALLAnnonces(1);*/
   }
 
 }
