@@ -4,12 +4,12 @@ Class Utilities {
 
   public $_db;
 
-  public function __construct() {
+  public function __construct($db) {
     $this->_db = $db;
   }
 
   public static function resizeandsave($images, $idSite, $imageUnique) {
-    $width = 250;
+    $width = 450;
     $size = GetimageSize($images);
     $height = round($width * $size[1] / $size[0]);
     $images_orig = ImageCreateFromJPEG($images);
@@ -24,7 +24,7 @@ Class Utilities {
   }
 
   public static function getVille($ville) {
-    $db = new PDO('mysql:host=localhost;dbname=searchannonces;charset=utf8', 'root', 'xfYdTuUPz6dw');
+    $db = new PDO('mysql:host=localhost;dbname=searchannonces;charset=utf8', 'root', 'ppHTNa3i');
     $cleanString = Utilities::clean($ville);
     $stmt = $db->query("SELECT * FROM villes WHERE slug LIKE '%" . $cleanString . "%'");
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -38,7 +38,7 @@ Class Utilities {
   }
 
   public static function getTags($tags) {
-    $db = new PDO('mysql:host=localhost;dbname=searchannonces;charset=utf8', 'root', 'xfYdTuUPz6dw');
+    $db = new PDO('mysql:host=localhost;dbname=searchannonces;charset=utf8', 'root', 'ppHTNa3i');
     $listTags = array();
     foreach ($tags as $tag) {
       $cleanString = Utilities::clean($tag);

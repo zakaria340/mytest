@@ -180,3 +180,8 @@ ol.dribbbles li div.dribbble a.dribbble-over, ol.collections li div.dribbble a.d
     text-decoration: none;
     cursor: pointer;
 }
+
+.more-thumbs .similar {
+    width: 115px;
+    height: 86px;
+}

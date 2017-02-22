@@ -1,33 +1,38 @@
 <div class="shot-overlay" style="" tabindex="-1">
     <a href="javascript:void(0)" class="close-overlay" aria-label="close">
-        X
     </a>
 
     <div class="overlay-content group" style="">
 
         <!-- /main -->
         <div class="slat-header user ">
-
+            <a href="/Willkes" title="William Kesling" rel="contact" class="url hoverable">
+                <picture>
+                    <img src="img/logo/<%= product.logo %>" class="photo">
+                </picture>
+            </a>
             <a href="/george-bokhua" title="George Bokhua" rel="contact" class="url hoverable"></a>
-            <h1><%= product.title %> </h1>
+            <h1><%= product.title %>  <span class="badge badge-pro"><%= product.prix %></span></h1>
 
             <h2 class="shot-byline">
       <span class="attribution ">
         <span class="shot-byline-user">
-          by <a href="/george-bokhua" rel="contact" class="url hoverable">George Bokhua</a>
+         <a href="#" class="url hoverable">  <%=  product.tags %> /  <%=  product.labelville %> </a>
         </span>
       </span>
 
         <span class="shot-byline-date">
-          on <a href="/shots?date=2017-02-21">Feb 21, 2017</a>
+           <em class="timestamp"> <%= new Date(product.date*1000).getDate()+1 %>/<%= new
+                            Date(product.date*1000).getMonth()+1 %>/<%= new Date(product.date*1000).getFullYear()
+                            %></em>
         </span>
             </h2>
         </div>
         <div class="main-shot">
-            <div data-img-src="https://d13yacurqjgara.cloudfront.net/users/73294/screenshots/3306707/cardinal.png"
+            <div data-img-src="images/<%= product.idSite %>/<%= product.image %>"
                  data-screenshot_id="3306707" class="the-shot">
                 <div class="single group">
-
+                    <img src="images/<%= product.idSite %>/<%= product.image %>" style="width: 100%; height: 100%">
                 </div>
             </div>
             <div class="screenshot-info-wrapper">
@@ -37,18 +42,80 @@
                         <p><%= product.description %></p>
                     </div>
                 </div>
+
+                <div class="screenshot-meta   is-team">
+
+                    <ul class="shot-stats">
+
+                        <% _.each(JSON.parse(product.extraKeywords), function(data) { %>
+                            <li class="shot-stats-share">
+                                <a class="stats-action share-shot" href="#">
+                                    <img alt="Icon shotstat share"
+                                         src="https://d13yacurqjgara.cloudfront.net/assets/icon-shotstat-share-128ae71c26985fc7325ac5362aba434686f12fdfffa45ed874262a19f923b071.png">
+                                    <span class="stats-label"><%= data.label %></span>
+                                </a>
+
+    <span class="views-count stats-num">
+      <%= data.value %>
+    </span>
+
+                            </li>
+                        <% }); %>
+                    </ul>
+
+
+                    <div class="related-player-shots">
+                        <h3 class="meta-head">
+                            <a href="">
+                                Annonces Similaires :
+                            </a></h3>
+
+                        <ol class="more-thumbs">
+                            <% _.each(similiarAnnonces, function(anno) { %>
+                            <li>
+                                <a href="#chercher-annonce/annonce/<%=  anno.tags %>/<%= anno.idAnnonces %>--<%= anno.title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') %>">
+                                    <img class="similar" alt="<%= product.title %>" src="images/<%= anno.idSite %>/<%= anno.image %>">
+                                </a>
+                            </li>
+                            <% }); %>
+                        </ol>
+                    </div>
+
+                    <h3 class="meta-head">Tags</h3>
+                    <div class="tags-section">
+                        <ol class="popular-tags" id="tags">
+                            <li class="tag" id="tag-li-3007">
+                                <a href="/eleken/tags/animation" rel="tag"> <strong>animation</strong>
+                                </a></li>
+                            <li class="tag" id="tag-li-12520">
+                                <a href="/eleken/tags/lifestyle" rel="tag"> <strong>lifestyle</strong>
+                                </a></li>
+                            <li class="tag" id="tag-li-443028">
+                                <a href="/eleken/tags/long_read" rel="tag"> <strong>long read</strong>
+                                </a></li>
+                            <li class="tag" id="tag-li-859">
+                                <a href="/eleken/tags/slider" rel="tag"> <strong>slider</strong>
+                                </a></li>
+                            <li class="tag" id="tag-li-5367">
+                                <a href="/eleken/tags/story" rel="tag"> <strong>story</strong>
+                                </a></li>
+                            <li class="tag" id="tag-li-54">
+                                <a href="/eleken/tags/ui" rel="tag"> <strong>ui</strong>
+                                </a></li>
+                            <li class="tag" id="tag-li-1673">
+                                <a href="/eleken/tags/ux" rel="tag"> <strong>ux</strong>
+                                </a></li>
+                            <li class="tag" id="tag-li-148">
+                                <a href="/eleken/tags/web" rel="tag"> <strong>web</strong>
+                                </a></li>
+                        </ol>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div id="kbd-legend">
-            <p>keyboard shortcuts:
-                <span><strong>←</strong> previous shot</span>
-                <span><strong>→</strong> next shot</span>
-                <span><strong>Esc</strong> close</span>
-                <span><strong>L</strong> or <strong>F</strong> like</span>
-                <span><strong>Z</strong> toggle zoom</span>
-                <span><strong class="keyboard-submit-shortcut">ctrl+enter</strong> post comment</span>
-            </p>
+            <p><a href="">Aller dans la page d'annonce</a></p>
         </div>
 
         <div class="overlay-footer group">

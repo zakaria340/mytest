@@ -34,6 +34,7 @@ define([
             var data = this.products.toJSON();
             this.$el.append(this.template({
               product: data[0].items[0],
+              similiarAnnonces: data[0].similiarAnnonces,
             }));
           }
           else {
@@ -47,7 +48,11 @@ define([
       return this;
     },
     closeItem: function (e) {
-     $('.contentItem').html('');
+      this.$el.find('.shot-overlay').remove();
+      if($('.currentpathval').html() !== '') {
+        var MyApp = new Backbone.Router();
+        MyApp.navigate($('.currentpathval').html(), true);
+      }
     }
   });
   return ItemView;

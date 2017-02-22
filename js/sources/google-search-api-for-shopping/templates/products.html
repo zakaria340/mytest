@@ -5,7 +5,7 @@
         <div class="dribbble">
             <div class="dribbble-shot">
                 <div class="dribbble-img">
-                    <a target="" href='#chercher-annonce/annonce/<%=  product.tags %>/<%= product.idAnnonces %>--<%= product.title %>' class="dribbble-link">
+                    <a target="" href="#chercher-annonce/annonce/<%=  product.tags %>/<%= product.idAnnonces %>--<%= product.title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') %>" class="dribbble-link">
                         <div data-alt="<%= product.title %>" data-picture="">
                             <div data-src="images/<%= product.idSite %>/<%= product.image %>"></div>
                             <div data-media="(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx)"
@@ -14,7 +14,7 @@
                             <img alt="<%= product.title %>" src="images/<%= product.idSite %>/<%= product.image %>">
                         </div>
                     </a>
-                    <a target="" href='#chercher-annonce/annonce/<%=  product.tags %>/<%= product.idAnnonces %>--<%= product.title %>' class="dribbble-over">
+                    <a target="" href="#chercher-annonce/annonce/<%=  product.tags %>/<%= product.idAnnonces %>--<%= product.title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') %>" class="dribbble-over">
                         <span class="comment"><%=  product.description.substr(0,130) %></span>
                         <em class="timestamp"> <%= new Date(product.date*1000).getDate()+1 %> / <%= new
                             Date(product.date*1000).getMonth()+1 %> / <%= new Date(product.date*1000).getFullYear()
@@ -35,7 +35,7 @@
         </div>
         <h2 class="attribution hover-card-parent">
             <span class="attribution-user">
-                <a target="" href='#chercher-annonce/annonce/<%=  product.tags %>/<%= product.idAnnonces %>--<%= product.title %>' class="url hoverable">
+                <a target="" href="#chercher-annonce/annonce/<%=  product.tags %>/<%= product.idAnnonces %>--<%= product.title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') %>"  class="url hoverable">
                     <img src="img/logo/<%= product.logo %>" class="photo"> <%= product.title %></a>
                 <a href="javascript:void(0)" class="badge-link">
                     <span class="badge badge-pro"><%= product.prix %></span>
@@ -61,6 +61,7 @@
 <div style="clear: both"></div>
 
 <div class="page">
+    <div style="display: none" class="currentpathval"><%= current_path %></div>
     <div class="pagination">
         <% if (parseInt(page) >1) { %>
         <a data-page="<%= page-1 %>" id="page-number-<%= page-1 %>" href="<%=  current_path  %>/<%= parseInt(page)-1 %>"
