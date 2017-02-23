@@ -185,3 +185,12 @@ ol.dribbbles li div.dribbble a.dribbble-over, ol.collections li div.dribbble a.d
     width: 115px;
     height: 86px;
 }
+.more-thumbs a.similar {
+    display: block;
+    font-size: 13px;
+    color: #999999;
+}
+
+.shot-desc p {
+    font-size: 85%;
+}

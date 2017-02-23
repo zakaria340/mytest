@@ -26,6 +26,23 @@ SET time_zone = "+00:00";
 -- Structure de la table `annonces`
 --
 
+CREATE TABLE IF NOT EXISTS `tagsExtra` (
+  `idTagsExtra` int(11) NOT NULL AUTO_INCREMENT,
+  `idAnnonce` int(11) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `Title` varchar(255) NOT NULL,
+  PRIMARY KEY (`idTagsExtra`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
+CREATE TABLE IF NOT EXISTS `tagsAnnonces` (
+  `idTagAnnonces` int(11) NOT NULL AUTO_INCREMENT,
+  `idAnnonce` int(11) NOT NULL,
+  `idTags` int(11) NOT NULL,
+  `Value` varchar(255) NOT NULL,
+  PRIMARY KEY (`idTagAnnonces`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 CREATE TABLE IF NOT EXISTS `annonces` (
   `idAnnonces` int(11) NOT NULL AUTO_INCREMENT,
   `idSite` int(11) NOT NULL,

@@ -36,6 +36,7 @@ Class Sphinx {
         $annoncesTable->insert($dataAnnonce);
         $idAnnonce = $annoncesTable->getLastInsertValue();
 
+        Utilities::getTagsAnnonces($rawExtraKeywords, $idAnnonce);
         /**
          * Sphinx Insert
          */

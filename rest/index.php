@@ -155,7 +155,7 @@ $app->get(
     echo '[]';
     die;
   }
-  $sqlSelect->limit(200); // always takes an integer/numeric
+  $sqlSelect->limit(20); // always takes an integer/numeric
 
   $resultSet = $annoncesTable->selectWith($sqlSelect);
   $data_ = utf8ize($resultSet->toArray());

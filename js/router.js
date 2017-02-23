@@ -8,8 +8,8 @@ define([
       'chercher-annonce/:sourceId(/)(/:tags)(/:idannonce--:title)': 'showSingle'
     },
     searchImages: function (sourceId, term, ville, tags, order, page) {
-      if (typeof term === 'undefined') {
-        term = '';
+      if (typeof term === 'undefined' || term == '') {
+        term = 'tous';
       }
       app.appQuery.set({sourceId: sourceId, term: term, ville: ville, tags: tags, order: order, page: page});
     },

@@ -42,9 +42,8 @@ Class Sarouty {
 
         $prix = trim($prix);
       }
-
-      if ($html->find('#primary-content .slides', 0)) {
-        $image = trim($html->find('#primary-content .slides img', 0)->src);
+      if ($html->find('#primary-content .swipe-wrap', 0)) {
+        $image = trim($html->find('#primary-content .swipe-wrap img', 0)->src);
         $image = str_replace('&amp;', '&', $image);
         $image = 'http:' . $image;
       }

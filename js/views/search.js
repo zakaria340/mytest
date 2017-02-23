@@ -10,24 +10,28 @@ define([
       'click .autocomplete__submit': 'setQuery',
       'click .order-item': 'setOrder',
       'click .tag-item': 'setTag',
-      'click .pagination a': 'setPage'
+      'click .pagination a': 'setPage',
+      'change #searchtags_expanded': 'setQuery'
     },
     searchTemplate: _.template(searchTemplate),
     optionTemplate: _.template("<option value='<%= id %>'><%= name %></option>"),
     initialize: function () {
-      console.log('initialize');
       this.model.on('change', this.applyQuery, this);
       $('.searchAnnonces').show();
       this.render();
     },
     setQuery: function () {
       var term = this.searchInput.val();
+      if(term == '') {
+        term = 'tous';
+      }
       var order = this.orderInput.find('li.active').find('a').data('order');
       var tags = this.tagsInput.val();
       var page = this.pageInput.val();
       var ville = this.villeInput.val();
       var sourceId = 'annonces';
       this.model.set({term: term, sourceId: sourceId, ville: ville, tags: tags, order: order, page: page});
+      return this;
     },
     setOrder: function (e) {
       $('.list-orders-items').find('.active').removeClass('active');
@@ -52,8 +56,11 @@ define([
       var ville = this.model.get('ville');
       var page = this.model.get('page');
 
-
-      this.searchInput.val(unescape(term));
+      if(term !== 'tous') {
+        this.searchInput.val(unescape(term));
+      } else {
+        this.searchInput.val('');
+      }
       this.sourceSelect.val(sourceId);
       this.orderInput.val(order);
       this.tagsInput.val(tags);

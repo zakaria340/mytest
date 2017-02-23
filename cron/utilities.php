@@ -9,14 +9,17 @@ Class Utilities {
   }
 
   public static function resizeandsave($images, $idSite, $imageUnique) {
-    $width = 450;
+    $width = 650;
     $size = GetimageSize($images);
     $height = round($width * $size[1] / $size[0]);
     $images_orig = ImageCreateFromJPEG($images);
     $photoX = ImagesX($images_orig);
     $photoY = ImagesY($images_orig);
     $images_fin = ImageCreateTrueColor($width, $height);
-    ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width + 1, $height + 1, $photoX, $photoY);
+    ImageCopyResampled(
+      $images_fin, $images_orig, 0, 0, 0, 0, $width + 1, $height + 1, $photoX,
+      $photoY
+    );
     ImageJPEG($images_fin, '../images/' . $idSite . '/' . $imageUnique);
     ImageDestroy($images_orig);
     ImageDestroy($images_fin);
@@ -24,35 +27,88 @@ Class Utilities {
   }
 
   public static function getVille($ville) {
-    $db = new PDO('mysql:host=localhost;dbname=searchannonces;charset=utf8', 'root', 'ppHTNa3i');
+    $db = new PDO(
+      'mysql:host=localhost;dbname=searchannonces;charset=utf8', 'root',
+      'ppHTNa3i'
+    );
     $cleanString = Utilities::clean($ville);
-    $stmt = $db->query("SELECT * FROM villes WHERE slug LIKE '%" . $cleanString . "%'");
+    $stmt = $db->query(
+      "SELECT * FROM villes WHERE slug LIKE '%" . $cleanString . "%'"
+    );
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!empty($data)) {
       return $data['idVilles'];
-    } else {
-      $db->exec("INSERT INTO `villes`(`name`,`slug`) VALUES ('$ville','$cleanString')");
+    }
+    else {
+      $db->exec(
+        "INSERT INTO `villes`(`name`,`slug`) VALUES ('$ville','$cleanString')"
+      );
       return $db->lastInsertId();
     }
     return $ville;
   }
 
   public static function getTags($tags) {
-    $db = new PDO('mysql:host=localhost;dbname=searchannonces;charset=utf8', 'root', 'ppHTNa3i');
+    $db = new PDO(
+      'mysql:host=localhost;dbname=searchannonces;charset=utf8', 'root',
+      'ppHTNa3i'
+    );
     $listTags = array();
     foreach ($tags as $tag) {
       $cleanString = Utilities::clean($tag);
-      $stmt = $db->query("SELECT * FROM tags WHERE slug LIKE '%" . $cleanString . "%'");
+      $stmt = $db->query(
+        "SELECT * FROM tags WHERE slug LIKE '%" . $cleanString . "%'"
+      );
 
       $data = $stmt->fetch(PDO::FETCH_ASSOC);
       if (!empty($data)) {
         $listTags[$data['idTags']] = $tag;
-      } else {
-        $db->exec("INSERT INTO `tags`(`name`,`slug`) VALUES ('$tag','$cleanString')");
+      }
+      else {
+        $db->exec(
+          "INSERT INTO `tags`(`name`,`slug`) VALUES ('$tag','$cleanString')"
+        );
         $listTags[$db->lastInsertId()] = $tag;
       }
     }
     return $listTags;
+  }
+
+
+  public static function getTagsAnnonces($tagsExtra, $idAnnonce) {
+    $db = new PDO(
+      'mysql:host=localhost;dbname=searchannonces;charset=utf8', 'root',
+      'ppHTNa3i'
+    );
+    foreach ($tagsExtra as $tag) {
+      $cleanString = Utilities::clean($tag['label']);
+      $stmt = $db->query(
+        "SELECT * FROM tagsExtra WHERE slug LIKE '%" . $cleanString . "%'"
+      );
+
+      $data = $stmt->fetch(PDO::FETCH_ASSOC);
+      if (!empty($data)) {
+        // existe
+        $idExtratag = $data['idTagsExtra'];
+        $valuee = $tag['value'];
+        $db->exec(
+          "INSERT INTO `tagsAnnonces`(`idAnnonce`,`idTags`,`Value`) VALUES ('$idAnnonce','$idExtratag','$valuee')"
+        );
+      }
+      else {
+        $label = $tag['label'];
+        $valuee = $tag['value'];
+        //not exist
+        $db->exec(
+          "INSERT INTO `tagsExtra`(`slug`,`Title`) VALUES ('$cleanString','$label')"
+        );
+        $lastIdextra = $db->lastInsertId();
+        $db->exec(
+          "INSERT INTO `tagsAnnonces`(`idAnnonce`,`idTags`,`Value`) VALUES ('$idAnnonce','$lastIdextra','$valuee')"
+        );
+      }
+    }
+    return TRUE;
   }
 
   public static function clean($string) {

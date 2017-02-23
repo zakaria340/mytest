@@ -34,20 +34,23 @@ Class Cron {
   }
 
   public function _excuteCron() {
-  /*  $marocannonces = new Moteur($this->adapter);
-    $marocannonces->fetchALLAnnonces(2);*/
-
-/*    $marocannonces = new Souk($this->adapter);
-    $marocannonces->fetchALLAnnonces(2);
-
+   //$marocannonces = new Moteur($this->adapter);
+   // $marocannonces->fetchALLAnnonces(2);
     $marocannonces = new sarouty($this->adapter);
     $marocannonces->fetchALLAnnonces(1);
+    
+    
+ /*  $marocannonces = new Souk($this->adapter);
+    $marocannonces->fetchALLAnnonces(2);*/
+    /* 
+        $marocannonces = new sarouty($this->adapter);
+        $marocannonces->fetchALLAnnonces(1);
+    //
+        $marocannonces = new Marocannonces($this->adapter);
+        $marocannonces->fetchALLAnnonces(1);*/
 //
-    $marocannonces = new Marocannonces($this->adapter);
-    $marocannonces->fetchALLAnnonces(1);*/
-//
-    $marocannonces = new Avitoma($this->adapter);
-    $marocannonces->fetchALLAnnonces(1);
+    //$marocannonces = new Avitoma($this->adapter);
+    //$marocannonces->fetchALLAnnonces(1);
 //
 /*    $marocannonces = new wandaloo($this->adapter);
     $marocannonces->fetchALLAnnonces(1);*/
